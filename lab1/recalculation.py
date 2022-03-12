@@ -7,7 +7,7 @@ def column_replacement(matrix: np.matrix, x: np.matrix, i: int):
     return matrix
 
 
-def partial_mul(q: np.matrix, a: np.matrix, k: int):
+def partial_mul(q: np.matrix, a: np.matrix, k: int) -> np.matrix:
     """ans = []
     for i in range(q.shape[0]):
         ans.append([])
@@ -21,7 +21,7 @@ def partial_mul(q: np.matrix, a: np.matrix, k: int):
                        for j in range(q.shape[0])] for i in range(q.shape[0])])
 
 
-def recalculation(matrix: np.matrix, x: np.matrix, i: int):
+def recalculation(matrix: np.matrix, x: np.matrix, i: int) -> np.matrix:
     i -= 1
     rows, columns = matrix.shape
 
