@@ -46,4 +46,6 @@ def main_phase(c: np.matrix, a: np.matrix, x: np.matrix, b: np.matrix):
         cb = np.matrix([float(c[i][0]) for i in np.squeeze(b.tolist())]).T
         Ab = replace_col(Ab, get_col(a, j), sigma_min[0])
         inverse_ab = recalculation(inverse_ab, get_col(a, j), sigma_min[0])
+        if isinstance(inverse_ab, str):
+            return x
     pass
