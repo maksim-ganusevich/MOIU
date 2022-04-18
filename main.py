@@ -1,5 +1,5 @@
-from lab1.recalculation import recalculation
 from lab2.main_phase import main_phase
+from lab3.first_phase import first_phase
 import numpy as np
 
 
@@ -16,7 +16,7 @@ def main():
     print(t)
     print((m_sqr_mx2 * t).round(8))
     """
-
+    """
     B = np.matrix([3, 4, 5]).T
     x = np.matrix([0, 0, 1, 3, 2])
     c = np.matrix([1, 1, 0, 0, 0]).T
@@ -25,7 +25,22 @@ def main():
          [1, 0, 0, 1, 0],
          [0, 1, 0, 0, 1]])
     t = main_phase(c, A, x, B)
-    pass
+    print(t)
+    """
+
+    A = np.matrix(
+        [[1, 1, 1],
+         [2, 2, 2]]
+    )
+    b = np.matrix(
+        [[0],
+         [0]]
+    )
+    c = np.matrix(
+        [1, 0, 0]
+    ).T
+    print(first_phase(c, A, b))
+pass
 
 
 if __name__ == '__main__':
