@@ -1,5 +1,6 @@
 from lab2.main_phase import main_phase
 from lab3.first_phase import first_phase
+from lab4.dual_simplex import dual_simplex_method
 import numpy as np
 
 
@@ -27,7 +28,7 @@ def main():
     t = main_phase(c, A, x, B)
     print(t)
     """
-
+    """
     A = np.matrix(
         [[1, 1, 1],
          [2, 2, 2]]
@@ -39,8 +40,20 @@ def main():
     c = np.matrix(
         [1, 0, 0]
     ).T
-    print(first_phase(c, A, b))
-pass
+    print(first_phase(c, A, b))"""
+    c = np.matrix([-4, -3, -7, 0, 0]).T
+    A = np.matrix(
+        [[-2, -1, -4, 1, 0],
+         [-2, -2, -2, 0, 1]]
+    )
+    b = np.matrix(
+        [[-1],
+         [-3/2]]
+    )
+    B = [4, 5]
+    dual_simplex_method(c, A, b, B)
+
+    pass
 
 
 if __name__ == '__main__':
