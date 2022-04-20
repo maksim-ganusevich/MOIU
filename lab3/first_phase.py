@@ -6,7 +6,7 @@ def first_phase(c: np.matrix, A: np.matrix, b: np.matrix):
     for i in range(len(b)):
         if b[i, 0] < 0:
             A[i, :] *= -1
-            b[i, 0] *= 1
+            b[i, 0] *= -1
 
     m, n = A.shape
     c_ = np.matrix([0] * n + [-1] * m).T
@@ -27,7 +27,7 @@ def first_phase(c: np.matrix, A: np.matrix, b: np.matrix):
 
     while True:
         if max(B) < n:
-            return x, B +1
+            return x, B + 1
 
         k = list(np.squeeze(B.tolist())).index(float(max(B)))
         i = max(B) - n

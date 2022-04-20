@@ -8,7 +8,7 @@ def k_check(k: np.matrix):
     return -1
 
 
-def dual_simplex_method(c: np.matrix, A: np.matrix, b: np.matrix, B: np.matrix):
+def dual_simplex_method(c: np.matrix, A: np.matrix, b: np.matrix, B: list):
     m, n = A.shape
     B = [i - 1 for i in B]
     while True:
@@ -39,7 +39,7 @@ def dual_simplex_method(c: np.matrix, A: np.matrix, b: np.matrix, B: np.matrix):
                 checker_compatibility = True
 
         if not checker_compatibility:
-            raise "task is not compatible"
+            raise BaseException("task is not compatible")
 
         j0 = min(σ, key=σ.get)
         B[k_index] = j0

@@ -27,7 +27,7 @@ def recalculation(matrix: np.matrix, x: np.matrix, i: int):
     l = matrix * x
     li = float(l[i])
     if abs(li) < 1e-10:
-        return "the matrix isn't invertible"
+        raise BaseException("the matrix isn't invertible")
     l[i] = -1
     l *= -1 / li
     e = np.matrix(np.eye(rows))
