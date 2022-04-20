@@ -14,7 +14,7 @@ def main_phase(c: np.matrix, a: np.matrix, x: np.matrix, b: np.matrix):
     Ab = a[:, np.squeeze(b.tolist())]
     inverse_ab = np.matrix(Ab.A)
 
-    cb = np.matrix([float(c[i][0]) for i in np.squeeze(b.tolist())]).T
+    cb = np.matrix([float(c[i, 0]) for i in np.squeeze(b.tolist())]).T
 
     while True:
         u = cb.T * inverse_ab
@@ -25,20 +25,21 @@ def main_phase(c: np.matrix, a: np.matrix, x: np.matrix, b: np.matrix):
 
         z = inverse_ab * a[:, j]
         sigma = [x[0, b[i, 0]] / z[i, 0] if z[i, 0] > 0 else float("inf") for i in range(z.shape[0])]
-        sigma_lst = list(enumerate(sigma, 0))
-        sigma_min = min(sigma_lst, key=lambda i: i[1])
-        if sigma_min[1] == float("inf"):
-            return np.matrix([float("inf") for _ in range(x.shape[1])]), b
+        sigma_min = min(sigma)
+        sigma_min_index = sigma.index(sigma_min)
+        if sigma_min == float("inf"):
+            raise BaseException("the objective functional of the problem is not bounded "
+                                "from above on the set of admissible plans")
 
-        x[0, j] = sigma_min[1]
+        x[0, j] = sigma_min
         for i in range(b.shape[0]):
-            x[0, b[i, 0]] -= sigma_min[1] * z[i, 0]
+            x[0, b[i, 0]] -= sigma_min * z[i, 0]
 
-        b[sigma_min[0], 0] = j
-        cb = np.matrix([float(c[i][0]) for i in np.squeeze(b.tolist())]).T
-        Ab[:, sigma_min[0]] = a[:, j]
+        b[sigma_min_index, 0] = j
+        cb = np.matrix([float(c[i, 0]) for i in np.squeeze(b.tolist())]).T
+        Ab[:, sigma_min_index] = a[:, j]
 
-        inverse_ab = recalculation(inverse_ab, a[:, j], sigma_min[0] + 1)
+        inverse_ab = recalculation(inverse_ab, a[:, j], sigma_min_index + 1)
         if isinstance(inverse_ab, str):
-            return x, b
+            return x, b + 1
     pass
