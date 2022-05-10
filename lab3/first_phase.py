@@ -3,6 +3,7 @@ from lab2.main_phase import main_phase
 
 
 def first_phase(c: np.matrix, A: np.matrix, b: np.matrix):
+
     for i in range(len(b)):
         if b[i, 0] < 0:
             A[i, :] *= -1
@@ -15,13 +16,13 @@ def first_phase(c: np.matrix, A: np.matrix, b: np.matrix):
     AHorz[0:m, n: n+m] = np.eye(m)
     AHorz = np.matrix(AHorz)
 
-    x = np.matrix(np.zeros(n + m))
+    x = np.matrix([0] * n + list(np.squeeze(b.tolist())))
     B = np.matrix([i for i in range(n, n + m)]).T + 1
 
     x_, B = main_phase(c_, AHorz, x, B)
 
     if len(np.flatnonzero(x_[:, n:])) != 0:
-        raise "task is not compatible"
+        raise "task is not feasible"
 
     x = x_[:, :n]
 
