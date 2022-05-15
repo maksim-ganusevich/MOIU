@@ -2,6 +2,7 @@ from lab2.main_phase import main_phase
 from lab3.first_phase import first_phase
 from lab4.dual_simplex import dual_simplex_method
 from lab5.potential_method import potential_method
+from lab6.quadratic_programming import quadratic_prog
 import numpy as np
 
 
@@ -56,14 +57,27 @@ def main():
     B = [4, 5]
     print(dual_simplex_method(c, A, b, B))
     """
-    pass
 
+    """
     a = np.array([100, 300, 300], float)
     b = np.array([300, 200, 200], float)
     c = np.array([[8, 4, 1],
                   [8, 4, 3],
                   [9, 7, 5]], float)
     print(potential_method(a, b, c))
+    """
+
+    A = np.matrix([[1, 0, 2, 1],
+                  [0, 1, -1, 2]])
+    c = np.matrix([-8, -6, -4, -6]).T
+    x = np.matrix([2., 3., 0., 0.]).T
+    J = [1, 2]
+    Js = [1, 2]
+    H = np.matrix([[2, 1, 1, 0],
+                  [1, 1, 0, 0],
+                  [1, 0, 1, 0],
+                  [0, 0, 0, 0]])
+    print(quadratic_prog(A, c, x, J, Js, H))
 
 
 if __name__ == '__main__':
