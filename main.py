@@ -3,6 +3,7 @@ from lab3.first_phase import first_phase
 from lab4.dual_simplex import dual_simplex_method
 from lab5.potential_method import potential_method
 from lab6.quadratic_programming import quadratic_prog
+from lab7.branch_bound import branch_and_bound_method
 import numpy as np
 
 
@@ -66,7 +67,7 @@ def main():
                   [9, 7, 5]], float)
     print(potential_method(a, b, c))
     """
-
+    """
     A = np.matrix([[1, 0, 2, 1],
                   [0, 1, -1, 2]])
     c = np.matrix([-8, -6, -4, -6]).T
@@ -78,6 +79,17 @@ def main():
                   [1, 0, 1, 0],
                   [0, 0, 0, 0]])
     print(quadratic_prog(A, c, x, J, Js, H))
+    """
+
+    c = np.matrix([[1],
+                   [1]])
+    A = np.matrix([[5, 9],
+                   [9, 5]])
+    b = np.matrix([[63],
+                   [63]])
+    d = np.matrix([[1, 6],
+                   [1, 6]])
+    print(branch_and_bound_method(c, A, b, d))
 
 
 if __name__ == '__main__':
