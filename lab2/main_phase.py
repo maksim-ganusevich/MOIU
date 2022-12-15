@@ -12,7 +12,7 @@ def delta_check(delta: np.matrix):
 def main_phase(c: np.matrix, a: np.matrix, x: np.matrix, b: np.matrix):
     b = b-1
     Ab = a[:, np.squeeze(b.tolist())]
-    inverse_ab = np.matrix(Ab.A)
+    inverse_ab = np.matrix(Ab.I)
 
     cb = np.matrix([float(c[i, 0]) for i in np.squeeze(b.tolist())]).T
 
@@ -31,11 +31,14 @@ def main_phase(c: np.matrix, a: np.matrix, x: np.matrix, b: np.matrix):
             raise BaseException("the objective functional of the problem is not bounded "
                                 "from above on the set of admissible plans")
 
+        j_star = int(b[sigma_min_index, 0])
+        b[sigma_min_index] = j
+        x[0, j_star] = 0
         x[0, j] = sigma_min
         for i in range(b.shape[0]):
-            x[0, b[i, 0]] -= sigma_min * z[i, 0]
+            if b[i, 0] != j:
+                x[0, int(b[i, 0])] -= sigma_min * z[i, 0]
 
-        b[sigma_min_index, 0] = j
         cb = np.matrix([float(c[i, 0]) for i in np.squeeze(b.tolist())]).T
         Ab[:, sigma_min_index] = a[:, j]
 

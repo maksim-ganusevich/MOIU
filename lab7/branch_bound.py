@@ -70,5 +70,3 @@ def branch_and_bound_method(c_: np.matrix, A_: np.matrix, b_: np.matrix, d_: np.
     for i in change:
         x_opt[i] *= -1
     return x_opt[:len(c_)], r
-
-    pass

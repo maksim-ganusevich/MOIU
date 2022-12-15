@@ -4,6 +4,10 @@ from lab4.dual_simplex import dual_simplex_method
 from lab5.potential_method import potential_method
 from lab6.quadratic_programming import quadratic_prog
 from lab7.branch_bound import branch_and_bound_method
+from lab8.clipping_constraint import clipping_constraint
+from lab9.max_path import find_max_path
+from lab10.profit_maximization import profit_maximization
+from lab11.max_flow import start_f_f
 import numpy as np
 
 
@@ -80,7 +84,7 @@ def main():
                   [0, 0, 0, 0]])
     print(quadratic_prog(A, c, x, J, Js, H))
     """
-
+    """
     c = np.matrix([[1],
                    [1]])
     A = np.matrix([[5, 9],
@@ -90,6 +94,23 @@ def main():
     d = np.matrix([[1, 6],
                    [1, 6]])
     print(branch_and_bound_method(c, A, b, d))
+    """
+    """
+    print("lab2")
+    print(clipping_constraint())
+    """
+    """
+    print("lab3")
+    find_max_path()
+    """
+    """
+    print("lab4")
+    print(profit_maximization())
+    """
+
+    print("lab5")
+    start_f_f()
+
 
 
 if __name__ == '__main__':

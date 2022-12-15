@@ -16,7 +16,7 @@ def first_phase(c: np.matrix, A: np.matrix, b: np.matrix):
     AHorz[0:m, n: n+m] = np.eye(m)
     AHorz = np.matrix(AHorz)
 
-    x = np.matrix([0] * n + list(np.squeeze(b.tolist())))
+    x = np.matrix([0.0] * n + list(np.squeeze(b.tolist())))
     B = np.matrix([i for i in range(n, n + m)]).T + 1
 
     x_, B = main_phase(c_, AHorz, x, B)
